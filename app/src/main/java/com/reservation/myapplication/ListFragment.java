@@ -40,9 +40,28 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(callback != null){
-                    callback
+                    callback.onImageSelected(1);
                 }
             }
         });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(callback != null){
+                    callback.onImageSelected(2);
+                }
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(callback != null){
+                    callback.onImageSelected(3);
+                }
+            }
+        });
+        return rootView;
     }
 }
