@@ -20,9 +20,10 @@ public class ListFragment extends Fragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
+        // fragement의 상태가 onAttach일때 실행
         super.onAttach(context);
 
-        if( context instanceof  ImageSelectionCallback){
+        if( context instanceof ImageSelectionCallback){
             callback = (ImageSelectionCallback) context;
         }
     }
