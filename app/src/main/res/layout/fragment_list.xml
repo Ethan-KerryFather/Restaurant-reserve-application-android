@@ -8,17 +8,17 @@
         android:id="@+id/list_button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="첫번째 이미지" />
+        android:text="뿌팟봉커리" />
 
     <Button
         android:id="@+id/list_button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="두번째 이미지" />
+        android:text="꿍팟봉커리" />
 
     <Button
         android:id="@+id/list_button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="세번째 이미지" />
+        android:text="칠리농어" />
 </LinearLayout>
