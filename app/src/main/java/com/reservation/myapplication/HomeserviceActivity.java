@@ -28,7 +28,7 @@ implements ListFragment.ImageSelectionCallback{
 
     @Override
     public void onImageSelected(int position) {
-        viewerFragment.setImage(position);
+        viewerFragment.setImage(images[position]);
     }
 }
 

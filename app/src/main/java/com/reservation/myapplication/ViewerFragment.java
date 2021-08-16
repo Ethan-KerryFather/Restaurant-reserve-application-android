@@ -24,6 +24,7 @@ public class ViewerFragment extends Fragment {
     }
 
     public void setImage(int resID){
+
         imageView.setImageResource(resID);
     }
 }

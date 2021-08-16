@@ -41,7 +41,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(callback != null){
-                    callback.onImageSelected(1);
+                    callback.onImageSelected(0);
                 }
             }
         });
@@ -50,7 +50,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(callback != null){
-                    callback.onImageSelected(2);
+                    callback.onImageSelected(1);
                 }
             }
         });
@@ -59,7 +59,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(callback != null){
-                    callback.onImageSelected(3);
+                    callback.onImageSelected(2);
                 }
             }
         });
