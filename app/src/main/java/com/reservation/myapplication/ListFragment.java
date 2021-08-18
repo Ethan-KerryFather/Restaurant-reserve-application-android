@@ -36,6 +36,14 @@ public class ListFragment extends Fragment {
         Button button1 = rootView.findViewById(R.id.list_button1);
         Button button2 = rootView.findViewById(R.id.list_button2);
         Button button3 = rootView.findViewById(R.id.list_button3);
+        Button button4 = rootView.findViewById(R.id.list_button4);
+
+        Button button5 = rootView.findViewById(R.id.list_button5);
+        Button button6 = rootView.findViewById(R.id.list_button6);
+        Button button7 = rootView.findViewById(R.id.list_button7);
+
+
+
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +71,40 @@ public class ListFragment extends Fragment {
                 }
             }
         });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(callback != null){
+                    callback.onImageSelected(3);
+                }
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(callback != null){
+                    callback.onImageSelected(4);
+                }
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(callback != null){
+                    callback.onImageSelected(5);
+                }
+            }
+        });
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(callback != null){
+                    callback.onImageSelected(6);
+                }
+            }
+        });
+
         return rootView;
     }
 }

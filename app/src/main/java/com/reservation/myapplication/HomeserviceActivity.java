@@ -1,8 +1,10 @@
 package com.reservation.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -13,7 +15,8 @@ implements ListFragment.ImageSelectionCallback{
     ListFragment listFragment;
     ViewerFragment viewerFragment;
 
-    int[] images = {R.drawable.food1, R.drawable.food2, R.drawable.food3};
+    int[] images = {R.drawable.potthai, R.drawable.chilinonga, R.drawable.nuapotnaman, R.drawable.food2,
+    R.drawable.food2, R.drawable.food2, R.drawable.pupatbong};
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
@@ -30,14 +33,16 @@ implements ListFragment.ImageSelectionCallback{
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getApplicationContext(),"추가되었습니다", Toast.LENGTH_SHORT).show();
             }
         });
 
         button_orderList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext() , homepop.class);
+                intent.putExtra("data", "test popup");
+                startActivity(intent);
             }
         });
 
