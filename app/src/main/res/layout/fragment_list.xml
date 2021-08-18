@@ -1,24 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:columnCount="3"
+    android:rowCount="6"
+    >
 
     <Button
         android:id="@+id/list_button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="뿌팟봉커리" />
+        android:text="왕새우 팟타이"
+        android:layout_column="0"
+        android:layout_row="0"
+        android:layout_rowSpan="2"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+
+        />
 
     <Button
         android:id="@+id/list_button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="꿍팟봉커리" />
+        android:text="미고랭"
+        android:layout_column="2"
+        android:layout_gravity="fill"
+        />
 
     <Button
         android:id="@+id/list_button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="칠리농어" />
-</LinearLayout>
+        android:text="생어거스틴 누들"
+        android:layout_gravity="fill"
+        />
+
+    <Button
+        android:id="@+id/list_button4"
+        android:text="똠얌꿍"
+        android:layout_columnSpan="2"
+        android:layout_rowSpan="2"
+        android:layout_gravity="fill"
+        />
+
+    <Button
+        android:id="@+id/list_button5"
+        android:text="나시고랭"
+        android:layout_gravity="fill"
+        />
+
+
+
+    <Button
+        android:id="@+id/list_button6"
+        android:text="생어거스틴 볶음밥"
+        android:layout_gravity="fill"
+        />
+
+    <Button
+        android:id="@+id/list_button7"
+        android:text="뿌팟봉커리"
+        android:layout_columnSpan="2"
+        android:layout_rowSpan="2"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_gravity="fill"
+        />
+
+    <Button
+        android:id="@+id/list_button8"
+        android:text="꿍팟봉커리"
+        android:layout_gravity="fill"
+        />
+    <Button
+        android:id="@+id/list_button9"
+        android:text="팍붕파이뎅"
+        android:layout_gravity="fill"
+        />
+
+
+
+
+</GridLayout>
