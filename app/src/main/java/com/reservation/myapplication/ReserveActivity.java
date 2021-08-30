@@ -1,6 +1,7 @@
 package com.reservation.myapplication;
 
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -15,8 +16,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 
 public class ReserveActivity extends AppCompatActivity {
     public void exit(){
@@ -106,7 +110,7 @@ public class ReserveActivity extends AppCompatActivity {
     }
 
     void sendingMessage(ConstraintLayout layout, String name){
-        String phoneNum = "01097499705";
+        String phoneNum = "01024076823";
         String smsContent = "*새로운 예약이 접수되었습니다*\n" + "이름 :" + name;
 
         try{
@@ -119,4 +123,51 @@ public class ReserveActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
