@@ -169,10 +169,10 @@ public class ReserveActivity extends AppCompatActivity {
         builder.setPositiveButton("확인하고 예약번호 발급", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                sendingMessage();
-                Information person1 = new Information();
-                reserve_number = person1.getReserveNum();
+                Information person = new Information();
+                reserve_number = person.getReserveNum();
                 Toast.makeText(getApplicationContext(), "귀하의 예약번호는 \n"+ reserve_number+" 입니다",Toast.LENGTH_LONG).show();
+                sendingMessage();
             }
         });
 
@@ -195,7 +195,7 @@ public class ReserveActivity extends AppCompatActivity {
         String phoneNum = "01097499705";
         String askedMessage = askEditText.getText().toString();
         String peopleNum = reserve_people.getSelectedItem().toString();
-        String message_content = "예약이 도착했습니다"
+        String message_content = "!!!**예약이 도착했습니다**!!!"
                 +"\n예약번호: "+ reserve_number
                 +"\n이름: " +customerName.getText().toString()+
                 "\n인원수: "+peopleNum
