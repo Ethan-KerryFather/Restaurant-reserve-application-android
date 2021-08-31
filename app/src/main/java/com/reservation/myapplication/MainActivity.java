@@ -1,6 +1,7 @@
 package com.reservation.myapplication;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+            //권한 요청하기
             AndPermission.with(this)
                     .runtime()
                     .permission(
@@ -113,15 +114,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 오버로딩
+
     void makeToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
     void makeToast(String message, int duration_time){
         Toast.makeText(this, message, duration_time).show();
     }
+    void makeSnackbar(Context context, View view ,String message, int durationTime){
+        Snackbar.make(context, view, message, durationTime).show();
+
+    }
 
 
+    // 권한 확인
     public void checkPermissions(String[] permissions) throws InterruptedException {
         ArrayList<String> permissionList = new ArrayList<>();
 
@@ -132,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
             if( permissionCheck == PackageManager.PERMISSION_GRANTED ){
                 makeToast("권한 확인 중입니다 " + (i+1) + "/3");
                 if ( i== permissions.length-1 )
-                    Thread.sleep(4000);
                     Snackbar.make(mainActivityLayout, "어플 정상작동 확인완료", Snackbar.LENGTH_SHORT ).show();
             }else{
                 makeToast("권한 비정상 작동 중");
@@ -156,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
+
 }
 
 

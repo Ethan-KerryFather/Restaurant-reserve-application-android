@@ -1,10 +1,14 @@
 package com.reservation.myapplication;
 
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,13 +20,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 public class ReserveActivity extends AppCompatActivity {
+    ConstraintLayout reserveActivityLayout;
+    EditText askEditText;
+    EditText customerName;
+    Spinner reserve_people;
+
     public void exit(){
         super.onBackPressed();
     }
@@ -54,18 +60,20 @@ public class ReserveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
 
+        askEditText = (EditText) findViewById(R.id.edittext_Ask);
+        customerName = (EditText) findViewById(R.id.reserve_Customer);
 
+        reserveActivityLayout = (ConstraintLayout) findViewById(R.id.layout2);
         Button enter_button = (Button) findViewById(R.id.enter_button);
         CheckBox checkBox_people = (CheckBox) findViewById(R.id.checkbox1);
         CheckBox checkBox_corona = (CheckBox) findViewById(R.id.checkbox2);
         ConstraintLayout layout_reserve = (ConstraintLayout) findViewById(R.id.layout2);
-        Spinner reserve_people = (Spinner) findViewById(R.id.reserve_spinner);
-        EditText customerName = (EditText) findViewById(R.id.reserve_personname);
+        reserve_people = (Spinner) findViewById(R.id.reserve_spinner);
         Button homeserviceButton = (Button) findViewById(R.id.home_service_button);
 
         reserve_people.setSelection(0);
         //String howManyPerson = reserve_people.getSelectedItem().toString();
-        String String_customerName = customerName.toString();
+
 
         ArrayAdapter peopleAdapter = ArrayAdapter.createFromResource(this,R.array.reserve_people, android.R.layout.simple_spinner_dropdown_item);
         reserve_people.setAdapter(peopleAdapter);
@@ -74,7 +82,7 @@ public class ReserveActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                enterPopup(layout_reserve, String_customerName);
+                enterPopup();
 
 
             }
@@ -85,7 +93,7 @@ public class ReserveActivity extends AppCompatActivity {
     }
 
 
-    void enterPopup(ConstraintLayout layout, String name){
+    void enterPopup(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("예약을 최종확정하시겠습니까?");
         builder.setCancelable(false);
@@ -93,7 +101,7 @@ public class ReserveActivity extends AppCompatActivity {
         builder.setPositiveButton("확인하고 예약번호 발급", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                sendingMessage(layout, name);
+                sendingMessage();
                 Information person1 = new Information();
                 Toast.makeText(getApplicationContext(), "귀하의 예약번호는 \n"+ person1.getReserveNum()+" 입니다",Toast.LENGTH_LONG).show();
             }
@@ -109,23 +117,117 @@ public class ReserveActivity extends AppCompatActivity {
         builder.show();
     }
 
-    void sendingMessage(ConstraintLayout layout, String name){
-        String phoneNum = "01024076823";
-        String smsContent = "*새로운 예약이 접수되었습니다*\n" + "이름 :" + name;
+
+
+    void sendingMessage(){
+        SmsManager smsManager = SmsManager.getDefault();
+
+
+        String phoneNum = "01097499705";
+        String askedMessage = askEditText.getText().toString();
+        String peopleNum = reserve_people.getSelectedItem().toString();
+        String message_content = "예약이 도착했습니다"
+                +"\n이름: " +customerName.getText().toString()+
+                "\n인원수: "+peopleNum
+                +"\n***요청사항***\n" + askedMessage;
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList = smsManager.divideMessage(message_content);
+        int smsNum = arrayList.size();
+
+        PendingIntent sentIntent = PendingIntent.getBroadcast(this,
+                0, new Intent("SMS_SENT_ACTION"), 0);
+
+        PendingIntent deliverIntent = PendingIntent.getBroadcast(this,
+                0, new Intent("SMS_DELIVERED_ACTION"), 0);
+
+
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (getResultCode()){
+                    case Activity.RESULT_OK:
+                        // 전송 성공
+                        Toast.makeText(getApplicationContext(), "전송 완료", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                        // 전송 실패
+                        Toast.makeText(getApplicationContext(), "전송 실패", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+                        // 서비스 지역 아님
+                        Toast.makeText(getApplicationContext(), "서비스 지역이 아닙니다", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+                        // 무선 꺼짐
+                        Toast.makeText(getApplicationContext(), "무선(Radio)가 꺼져있습니다", Toast.LENGTH_SHORT).show();
+                        break;
+                    case SmsManager.RESULT_ERROR_NULL_PDU:
+                        // PDU 실패
+                        Toast.makeText(getApplicationContext(), "PDU Null", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        }, new IntentFilter("SMS_SENT_ACTION"));
+
+
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                switch (getResultCode()){
+                    case Activity.RESULT_OK:
+                        // 도착 완료
+                        Toast.makeText(getApplicationContext(), "SMS 도착 완료", Toast.LENGTH_SHORT).show();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        // 도착 안됨
+                        Toast.makeText(getApplicationContext(), "SMS 도착 실패", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        }, new IntentFilter("SMS_DELIVERED_ACTION"));
 
         try{
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNum,null,smsContent,null,null);
-            Snackbar.make(this,layout,"감사합니다. 예약이 확정되어 자동발송되었습니다", Snackbar.LENGTH_SHORT).show();
+            for( int i = 0 ; i < smsNum ; i++ ){
+                smsManager.sendTextMessage(phoneNum,null,arrayList.get(i), sentIntent, deliverIntent);
+            }
         }catch (Exception e){
-            Toast.makeText(this, "예약이 실패하였습니다.", Toast.LENGTH_SHORT).show();
-            Log.e("문자발송","실패");
             e.printStackTrace();
         }
+
     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
