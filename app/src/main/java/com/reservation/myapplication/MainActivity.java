@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), curPermissions);
 
             if( permissionCheck == PackageManager.PERMISSION_GRANTED ){
-                makeToast("권한 확인 중입니다 " + (i+1) + "/3");
+
                 if ( i== permissions.length-1 )
                     Snackbar.make(mainActivityLayout, "어플 정상작동 확인완료", Snackbar.LENGTH_SHORT ).show();
             }else{

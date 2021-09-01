@@ -42,6 +42,15 @@ public class ReserveActivity extends AppCompatActivity {
     String date;
     String final_reservation;
     int reserve_number;
+    boolean covidCheck;
+    Button date_button;
+    Button time_button;
+    CheckBox checkBox_people;
+    CheckBox checkBox_corona;
+    Button enter_button;
+    boolean dateChecked = false;
+    boolean timeChecked = false;
+    boolean isReservationDone = false;
 
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -64,6 +73,7 @@ public class ReserveActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(isReservationDone == false){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("예약 중입니다. 홈으로 이동합니까?");
         builder.setCancelable(false);
@@ -81,7 +91,11 @@ public class ReserveActivity extends AppCompatActivity {
 
             }
         });
-        builder.show();
+        builder.show();}
+        else{
+            super.onBackPressed();
+        }
+
     }
 
     @Override
@@ -89,21 +103,24 @@ public class ReserveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
 
-        askEditText = (EditText) findViewById(R.id.edittext_Ask);
-        customerName = (EditText) findViewById(R.id.reserve_Customer);
+        askEditText = (EditText) findViewById(R.id.askedMessage);
+        customerName = (EditText) findViewById(R.id.customerName);
 
 
         reserveActivityLayout = (ConstraintLayout) findViewById(R.id.layout2);
-        reserve_people = (Spinner) findViewById(R.id.reserve_spinner);
+        reserve_people = (Spinner) findViewById(R.id.customerNum);
         reserve_final = (TextView) findViewById(R.id.reserve_finalView);
 
-        CheckBox checkBox_people = (CheckBox) findViewById(R.id.checkbox1);
-        CheckBox checkBox_corona = (CheckBox) findViewById(R.id.checkbox2);
-        ConstraintLayout layout_reserve = (ConstraintLayout) findViewById(R.id.layout2);
+        // 방역수칙 준수여부
+        checkBox_people = (CheckBox) findViewById(R.id.isChecked1);
+        checkBox_corona = (CheckBox) findViewById(R.id.isChecked2);
+        covidCheck = false;
+
+
         Button homeserviceButton = (Button) findViewById(R.id.home_service_button);
-        Button enter_button = (Button) findViewById(R.id.enter_button);
-        Button date_button = (Button) findViewById(R.id.date_button);
-        Button time_button = (Button) findViewById(R.id.time_button);
+        enter_button = (Button) findViewById(R.id.decideButton);
+        date_button = (Button) findViewById(R.id.dateButton);
+        time_button = (Button) findViewById(R.id.timeButton);
         // 인원 스피너 기본값 선택
         reserve_people.setSelection(0);
         //String howManyPerson = reserve_people.getSelectedItem().toString();
@@ -126,7 +143,8 @@ public class ReserveActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new DatePickerDialog(ReserveActivity.this, myDatePicker, myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH) ).show();
-
+                        date_button.setText("선택완료");
+                        dateChecked = true;
 
             }
         });
@@ -147,6 +165,8 @@ public class ReserveActivity extends AppCompatActivity {
                         }
                         final_reservation += " "+ selectedHour +"시 "+selectedMinute+"분 예약입니다";
                         reserve_final.setText(final_reservation);
+                        time_button.setText("선택완료");
+                        timeChecked = true;
                     }
                 }, hour, minute, true);
 
@@ -169,11 +189,34 @@ public class ReserveActivity extends AppCompatActivity {
         builder.setPositiveButton("확인하고 예약번호 발급", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                boolean dateTime = false;
+                if(dateChecked == true && timeChecked)
+                    dateTime = true;
+
                 Information person = new Information();
                 reserve_number = person.getReserveNum();
-                Toast.makeText(getApplicationContext(), "귀하의 예약번호는 \n"+ reserve_number+" 입니다",Toast.LENGTH_LONG).show();
-                sendingMessage();
-            }
+
+                if(checkBox_corona.isChecked() && checkBox_people.isChecked())
+                    covidCheck = true;
+
+                if((customerName.getText().toString() != null) && (reserve_people.getSelectedItem().toString() != Integer.toString(0) )
+                        && dateTime != false){
+                if(covidCheck == true){
+                    sendingMessage();
+                    Toast.makeText(getApplicationContext(), "귀하의 예약번호는 \n"+ reserve_number+" 입니다",Toast.LENGTH_LONG).show();
+                    customerName.setText(null);
+                    reserve_people.setSelection(0);
+                    askEditText.setText(null);
+                    enter_button.setText("예약이 완료되었습니다");
+                    isReservationDone = true;
+                } else{
+                    Toast.makeText(getApplicationContext(), "방역수칙 준수 버튼이 체크되지 않았습니다", Toast.LENGTH_LONG).show();
+                }}else {
+                    Toast.makeText(getApplicationContext(), "예약에 필요한 정보가\n모두 입력되지 않았습니다\n확인바랍니다", Toast.LENGTH_LONG).show();
+
+
+            }}
+
         });
 
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {

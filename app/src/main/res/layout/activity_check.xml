@@ -8,14 +8,14 @@
     android:background="#000000">
 
     <EditText
-        android:id="@+id/reserve_code"
+        android:id="@+id/reservationCode"
         android:layout_width="123dp"
         android:layout_height="37dp"
         android:background="#FFFFFF"
         android:hint="0000"
         android:inputType="number"
         android:textColor="#000000"
-        android:textColorHint="#DADADA"
+        android:textColorHint="#AA9D9D"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
@@ -55,7 +55,7 @@
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/check_textview1"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
         android:id="@+id/imageView3"

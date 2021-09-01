@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.01999998" />
 
     <EditText
-        android:id="@+id/edittext_Ask"
+        android:id="@+id/askedMessage"
         android:layout_width="411dp"
         android:layout_height="102dp"
         android:background="#FFFFFF"
@@ -31,11 +31,11 @@
         android:textColor="#000000"
         android:textColorHint="#DADADA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_button"
-        app:layout_constraintVertical_bias="0.00999999" />
+        app:layout_constraintTop_toBottomOf="@+id/dateButton"
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <Button
-        android:id="@+id/enter_button"
+        android:id="@+id/decideButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#730101"
@@ -43,10 +43,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox2" />
+        app:layout_constraintTop_toBottomOf="@+id/isChecked2" />
 
     <CheckBox
-        android:id="@+id/checkbox1"
+        android:id="@+id/isChecked1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5명 이상입니다"
@@ -54,19 +54,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_Ask"
+        app:layout_constraintTop_toBottomOf="@+id/askedMessage"
         app:layout_constraintVertical_bias="0.110000014" />
 
     <CheckBox
-        android:id="@+id/checkbox2"
+        android:id="@+id/isChecked2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="방역수칙을 준수할 것임을 약속합니다"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/checkbox1"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox1"
+        app:layout_constraintStart_toStartOf="@+id/isChecked1"
+        app:layout_constraintTop_toBottomOf="@+id/isChecked1"
         app:layout_constraintVertical_bias="0.13999999" />
 
     <ImageView
@@ -92,7 +92,7 @@
         tools:layout_editor_absoluteX="74dp" />
 
     <EditText
-        android:id="@+id/reserve_Customer"
+        android:id="@+id/customerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#730101"
@@ -105,14 +105,14 @@
         app:layout_constraintTop_toTopOf="@+id/reserve_name" />
 
     <Spinner
-        android:id="@+id/reserve_spinner"
+        android:id="@+id/customerNum"
         android:layout_width="141dp"
         android:layout_height="23dp"
         android:backgroundTint="#730101"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/reserve_Customer"
+        app:layout_constraintStart_toStartOf="@+id/customerName"
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
     <TextView
@@ -128,35 +128,38 @@
         app:layout_constraintVertical_bias="0.060000002" />
 
     <Button
-        android:id="@+id/date_button"
+        android:id="@+id/dateButton"
         android:layout_width="91dp"
         android:layout_height="47dp"
+        android:backgroundTint="#730101"
         android:text="날짜 선택"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/reserve_spinner"
-        app:layout_constraintTop_toBottomOf="@+id/reserve_spinner"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/customerNum"
+        app:layout_constraintTop_toBottomOf="@+id/customerNum"
+        app:layout_constraintVertical_bias="0.06999999" />
 
     <Button
-        android:id="@+id/time_button"
+        android:id="@+id/timeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#730101"
         android:text="시간선택"
-        app:layout_constraintBottom_toBottomOf="@+id/date_button"
+        app:layout_constraintBottom_toBottomOf="@+id/dateButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.35"
-        app:layout_constraintStart_toEndOf="@+id/date_button"
-        app:layout_constraintTop_toTopOf="@+id/date_button" />
+        app:layout_constraintStart_toEndOf="@+id/dateButton"
+        app:layout_constraintTop_toTopOf="@+id/dateButton" />
 
     <TextView
         android:id="@+id/reserve_finalView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/enter_button"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/decideButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox2" />
+        app:layout_constraintTop_toBottomOf="@+id/isChecked2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
