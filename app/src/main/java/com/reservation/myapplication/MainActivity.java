@@ -64,10 +64,11 @@ public class MainActivity extends AppCompatActivity {
         button_homeService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomeserviceActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), HomeserviceActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+//                        Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "곧 서비스 예정입니다", Toast.LENGTH_SHORT).show();
             }
         });
 
