@@ -1,6 +1,5 @@
-package com.reservation.myapplication;
+package com.reservation.saintapl;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -141,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 if ( i== permissions.length-1 )
                     Snackbar.make(mainActivityLayout, "어플 정상작동 확인완료", Snackbar.LENGTH_SHORT ).show();
             }else{
-                makeToast("권한 비정상 작동 중");
                 if( ActivityCompat.shouldShowRequestPermissionRationale(this, curPermissions) ){
                     // 이경우 shouldShow~가 true를 반환한 경우인데 이 경우는 사용자가 명시적으로 거부를 눌렀을 때이다
                     makeToast("권한이 없으면 예약이 불가능합니다");

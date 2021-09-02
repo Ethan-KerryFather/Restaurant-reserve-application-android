@@ -43,7 +43,7 @@
 
         <fragment
             android:id="@+id/listFragment"
-            android:name="com.reservation.myapplication.ListFragment"
+            android:name="com.reservation.saintapl.ListFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -67,7 +67,7 @@
 
         <fragment
             android:id="@+id/viewerFragment"
-            android:name="com.reservation.myapplication.ViewerFragment"
+            android:name="com.reservation.saintapl.ViewerFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

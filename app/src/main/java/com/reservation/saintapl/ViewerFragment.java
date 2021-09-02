@@ -1,4 +1,4 @@
-package com.reservation.myapplication;
+package com.reservation.saintapl;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

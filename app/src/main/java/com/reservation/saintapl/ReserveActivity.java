@@ -1,4 +1,4 @@
-package com.reservation.myapplication;
+package com.reservation.saintapl;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;

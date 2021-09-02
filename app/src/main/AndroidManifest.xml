@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.reservation.myapplication" >
+    package="com.reservation.saintapl" >
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS"/>
@@ -15,11 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
-            android:name=".homepop"
+            android:name="com.reservation.saintapl.homepop"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
 
-        <activity android:name=".MainActivity" >
+        <activity android:name="com.reservation.saintapl.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +27,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ReserveActivity" />
-        <activity android:name=".CheckActivity" />
-        <activity android:name=".HomeserviceActivity" />
+        <activity android:name="com.reservation.saintapl.ReserveActivity" />
+        <activity android:name="com.reservation.saintapl.CheckActivity" />
+        <activity android:name="com.reservation.saintapl.HomeserviceActivity" />
     </application>
 
 </manifest>
