@@ -31,6 +31,8 @@
         android:textColor="#000000"
         android:textColorHint="#DADADA"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateButton"
         app:layout_constraintVertical_bias="0.07999998" />
 
@@ -97,7 +99,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#730101"
         android:ems="10"
-        android:hint="이름, 인원, 날짜 필수입력"
+        android:hint="예시: 홍길동"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/reserve_name"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,8 +131,9 @@
 
     <Button
         android:id="@+id/dateButton"
-        android:layout_width="91dp"
-        android:layout_height="47dp"
+        android:layout_width="72dp"
+        android:layout_height="34dp"
+        android:background="@drawable/round"
         android:backgroundTint="#730101"
         android:text="날짜 선택"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -142,8 +145,9 @@
 
     <Button
         android:id="@+id/timeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        android:layout_height="34dp"
+        android:background="@drawable/round"
         android:backgroundTint="#730101"
         android:text="시간선택"
         app:layout_constraintBottom_toBottomOf="@+id/dateButton"
