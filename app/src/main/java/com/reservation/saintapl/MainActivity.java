@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         String[] permissions = {
-                Permission.SEND_SMS,
-                Permission.RECEIVE_SMS,
-                Permission.READ_SMS
+                Permission.SEND_SMS
         };
 
         try{
@@ -95,9 +93,7 @@ public class MainActivity extends AppCompatActivity {
             AndPermission.with(this)
                     .runtime()
                     .permission(
-                            Permission.SEND_SMS,
-                            Permission.RECEIVE_SMS,
-                            Permission.READ_SMS
+                            Permission.SEND_SMS
                     )
                     .onGranted(new Action<List<String>>() {
                         @Override
